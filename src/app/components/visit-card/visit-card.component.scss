@@ -1,0 +1,41 @@
+.card-container {
+  position: relative;
+}
+
+/* Status pill (top-right) */
+.status-pill {
+  position: absolute;
+  top: -0.75rem;
+  right: 0.75rem;
+  z-index: 10;
+}
+
+/* Base card styling (padding-top ensures pill doesn’t overlap content) */
+.card {
+  padding-top: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-footer-item.button {
+  width: 100%;
+  justify-content: center;
+}
+
+.tag.is-medium {
+  font-size: 0.85rem;
+  padding: 0.5em 0.75em;
+}
+
+/* Colored left border for each status */
+.border-warning {
+  border-left: 4px solid #ffdd57; /* Bulma’s “is-warning” color */
+}
+
+.border-success {
+  border-left: 4px solid #23d160; /* Bulma’s “is-success” color */
+}
+
+.border-danger {
+  border-left: 4px solid #ff3860; /* Bulma’s “is-danger” color */
+}

@@ -1,0 +1,425 @@
+<section class="section">
+	<div class="container">
+		<div class="columns is-centered">
+			<div class="column is-one-third">
+				<div class="box">
+					<h4 class="title is-5 has-text-centered mb-4">
+						Today's Seva Summary
+					</h4>
+
+					<!-- Total Seva Card -->
+					<div class="card mb-4">
+						<div class="card-content">
+							<div
+								class="is-flex is-justify-content-space-between"
+							>
+								<span class="has-text-weight-semibold"
+									>Total Seva</span
+								>
+								<span class="tag is-primary is-light is-medium"
+									>156</span
+								>
+							</div>
+						</div>
+					</div>
+
+					<!-- Local/Global Distribution -->
+					<div class="card mb-4">
+						<header class="card-header">
+							<p class="card-header-title">By Type</p>
+						</header>
+						<div class="card-content">
+							<div
+								class="is-flex is-justify-content-space-between mb-2"
+							>
+								<span>
+									<span class="icon has-text-info">
+										<i class="fas fa-home"></i>
+									</span>
+									Local
+								</span>
+								<span class="has-text-weight-semibold">42</span>
+							</div>
+							<div
+								class="is-flex is-justify-content-space-between"
+							>
+								<span>
+									<span class="icon has-text-success">
+										<i class="fas fa-globe"></i>
+									</span>
+									Global
+								</span>
+								<span class="has-text-weight-semibold"
+									>114</span
+								>
+							</div>
+						</div>
+					</div>
+
+					<!-- Status Distribution with Local/Global Breakdown -->
+					<div class="card">
+						<header class="card-header">
+							<p class="card-header-title">By Status & Type</p>
+						</header>
+						<div class="card-content">
+							<!-- Completed Status -->
+							<div class="mb-4">
+								<div
+									class="is-flex is-justify-content-space-between mb-2"
+								>
+									<span class="tag is-success is-light"
+										>Completed</span
+									>
+									<span class="has-text-weight-semibold"
+										>98</span
+									>
+								</div>
+								<div class="pl-4">
+									<div
+										class="is-flex is-justify-content-space-between mb-1"
+									>
+										<span class="has-text-grey is-size-7">
+											<span
+												class="icon has-text-info is-small"
+											>
+												<i class="fas fa-home"></i>
+											</span>
+											Local
+										</span>
+										<span
+											class="has-text-weight-semibold is-size-7"
+											>30</span
+										>
+									</div>
+									<div
+										class="is-flex is-justify-content-space-between"
+									>
+										<span class="has-text-grey is-size-7">
+											<span
+												class="icon has-text-success is-small"
+											>
+												<i class="fas fa-globe"></i>
+											</span>
+											Global
+										</span>
+										<span
+											class="has-text-weight-semibold is-size-7"
+											>68</span
+										>
+									</div>
+								</div>
+							</div>
+
+							<!-- Pending Status -->
+							<div class="mb-4">
+								<div
+									class="is-flex is-justify-content-space-between mb-2"
+								>
+									<span class="tag is-warning is-light"
+										>Pending</span
+									>
+									<span class="has-text-weight-semibold"
+										>45</span
+									>
+								</div>
+								<div class="pl-4">
+									<div
+										class="is-flex is-justify-content-space-between mb-1"
+									>
+										<span class="has-text-grey is-size-7">
+											<span
+												class="icon has-text-info is-small"
+											>
+												<i class="fas fa-home"></i>
+											</span>
+											Local
+										</span>
+										<span
+											class="has-text-weight-semibold is-size-7"
+											>15</span
+										>
+									</div>
+									<div
+										class="is-flex is-justify-content-space-between"
+									>
+										<span class="has-text-grey is-size-7">
+											<span
+												class="icon has-text-success is-small"
+											>
+												<i class="fas fa-globe"></i>
+											</span>
+											Global
+										</span>
+										<span
+											class="has-text-weight-semibold is-size-7"
+											>30</span
+										>
+									</div>
+								</div>
+							</div>
+
+							<!-- Cancelled Status -->
+							<div class="mb-2">
+								<div
+									class="is-flex is-justify-content-space-between mb-2"
+								>
+									<span class="tag is-danger is-light"
+										>Cancelled</span
+									>
+									<span class="has-text-weight-semibold"
+										>13</span
+									>
+								</div>
+								<div class="pl-4">
+									<div
+										class="is-flex is-justify-content-space-between mb-1"
+									>
+										<span class="has-text-grey is-size-7">
+											<span
+												class="icon has-text-info is-small"
+											>
+												<i class="fas fa-home"></i>
+											</span>
+											Local
+										</span>
+										<span
+											class="has-text-weight-semibold is-size-7"
+											>5</span
+										>
+									</div>
+									<div
+										class="is-flex is-justify-content-space-between"
+									>
+										<span class="has-text-grey is-size-7">
+											<span
+												class="icon has-text-success is-small"
+											>
+												<i class="fas fa-globe"></i>
+											</span>
+											Global
+										</span>
+										<span
+											class="has-text-weight-semibold is-size-7"
+											>8</span
+										>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="column">
+				<div class="box has-shadow-light">
+					<h3
+						class="title is-4 has-text-primary has-text-centered mb-5"
+					>
+						<span class="icon-text">
+							<span class="icon">
+								<i class="fas fa-hands-helping"></i>
+							</span>
+							<span>New Seva Registration</span>
+						</span>
+					</h3>
+
+					<form (ngSubmit)="onSubmit()" [formGroup]="visitForm">
+						<!-- Name Field -->
+						<div class="field">
+							<label class="label">Name</label>
+							<div class="control has-icons-left">
+								<input
+									class="input"
+									type="text"
+									placeholder="Full name"
+									formControlName="name"
+								/>
+								<span class="icon is-small is-left">
+									<i class="fas fa-user"></i>
+								</span>
+							</div>
+							<p
+								class="help is-danger"
+								*ngIf="
+									visitForm.get('name')?.errors?.[
+										'required'
+									] && visitForm.get('name')?.touched
+								"
+							>
+								Name is required
+							</p>
+							<p
+								class="help is-danger"
+								*ngIf="
+									visitForm.get('name')?.errors?.[
+										'minlength'
+									] && visitForm.get('name')?.touched
+								"
+							>
+								At least 3 characters are required
+							</p>
+						</div>
+
+						<!-- Gotra Field -->
+						<div class="field">
+							<label class="label">Gotra</label>
+							<div class="control has-icons-left">
+								<input
+									class="input"
+									type="text"
+									placeholder="Family lineage"
+									formControlName="gotra"
+								/>
+								<span class="icon is-small is-left">
+									<i class="fas fa-tree"></i>
+								</span>
+							</div>
+							<p
+								class="help is-danger"
+								*ngIf="
+									visitForm.get('gotra')?.errors?.[
+										'required'
+									] && visitForm.get('gotra')?.touched
+								"
+							>
+								Gotra is required
+							</p>
+							<p
+								class="help is-danger"
+								*ngIf="
+									visitForm.get('gotra')?.errors?.[
+										'minlength'
+									] && visitForm.get('gotra')?.touched
+								"
+							>
+								At least 3 characters are required
+							</p>
+						</div>
+
+						<!-- Seva Date -->
+						<div class="field">
+							<label class="label">Seva Date</label>
+							<div class="control has-icons-left">
+								<input
+									class="input"
+									type="date"
+									formControlName="visitDate"
+								/>
+								<span class="icon is-small is-left">
+									<i class="fas fa-calendar-day"></i>
+								</span>
+							</div>
+							<p
+								class="help is-danger"
+								*ngIf="
+									visitForm.get('visitDate')?.invalid &&
+									visitForm.get('visitDate')?.touched
+								"
+							>
+								Please select a date
+							</p>
+						</div>
+
+						<!-- Type Selection -->
+						<div class="field">
+							<label class="label">Visitor Type</label>
+							<div class="control">
+								<div class="buttons has-addons">
+									<button
+										type="button"
+										class="button is-primary"
+										(click)="selectType('local')"
+										[ngClass]="{
+											'is-outlined':
+												selectedType() !== 'local',
+										}"
+									>
+										<span class="icon">
+											<i class="fas fa-home"></i>
+										</span>
+										<span>Local</span>
+									</button>
+									<button
+										type="button"
+										class="button is-primary is-outlined"
+										(click)="selectType('non-local')"
+										[ngClass]="{
+											'is-outlined':
+												selectedType() !== 'non-local',
+										}"
+									>
+										<span class="icon">
+											<i class="fas fa-globe"></i>
+										</span>
+										<span>Non-Local</span>
+									</button>
+								</div>
+								<input
+									type="hidden"
+									formControlName="local"
+									name="type"
+									[value]="selectedType()"
+								/>
+							</div>
+						</div>
+
+						<!-- Phone Number -->
+						<div class="field">
+							<label class="label"
+								>Phone Number (India Only)
+
+								<span class="has-tooltip ml-2">
+									<span class="icon is-small has-text-info">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<span class="tooltip">
+										For non-Indian numbers, please contact
+										admin
+									</span>
+								</span>
+							</label>
+							<div class="control has-icons-left">
+								<input
+									class="input"
+									inputmode="tel"
+									type="tel"
+									placeholder="10 digit number"
+									maxlength="10"
+									formControlName="phone"
+								/>
+								<span class="icon is-small is-left">
+									<i class="fas fa-phone"></i>
+								</span>
+							</div>
+
+							<p
+								class="help is-danger"
+								*ngIf="
+									visitForm.get('phone')?.invalid &&
+									visitForm.get('phone')?.touched
+								"
+							>
+								Valid 10 digit number required
+							</p>
+						</div>
+
+						<!-- Submit Button -->
+						<div class="field mt-6">
+							<div class="control">
+								<button
+									type="submit"
+									class="button is-primary is-fullwidth is-medium"
+									[disabled]="visitForm.invalid"
+								>
+									<span class="icon">
+										<i class="fas fa-plus-circle"></i>
+									</span>
+									<span>Register Seva</span>
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
