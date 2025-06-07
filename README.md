@@ -1,59 +1,89 @@
-# PadarchanamAnumodanam
+# पादार्चनं अनुमोदनम् (Visit Scheduling App)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.13.
+## Current State
 
-## Development server
+This Angular application, styled with Bulma CSS, is a self-contained demo of the visit scheduling system. All data and authentication flows are currently mocked; future integration with a real backend is planned.
 
-To start a local development server, run:
+---
+
+### 1. Demo Login
+
+- **Credentials:** `client1` / `simple123`
+- Displays an info banner on the login form:
+  ```
+  🚧 Demo mode: Use `client1` / `simple123` to log in. All data is dummy until backend is connected.
+  ```
+- Simulates backend latency (configurable via `fakeLatency`), shows loading spinner on the login button, and displays an error notification on invalid credentials.
+
+### 2. Mode Selection
+
+- After successful login, the user is routed to **Select Mode**.
+- Allows choosing between **Mock DB** and **Actual DB** (currently no real DB operations).
+
+### 3. Navbar & Routing
+
+- **Navbar** includes links to:
+  - **Today** (`/dashboard/today`)
+  - **Analytics** (`/dashboard/full`)
+  - **Settings** (`/dashboard/settings`)
+  - **Logout** (opens a confirmation modal)
+- Protected routes using `AuthGuard` and `AlreadyAuthGuard`.
+- Default redirect from `/dashboard` → `/dashboard/today`.
+
+### 4. Dashboard (Today & Analytics)
+
+- **Today:** Placeholder for daily visit summary dashboard.
+- **Analytics:** Placeholder for full dashboard charts.
+
+### 5. Settings (future update)
+
+- Single-page view listing:
+  1. **Update Data Preferences**
+     - Inline edit activated by a pencil icon.
+     - Toggle between Mock vs Actual DB.
+     - Shows a top-right Bulma notification explaining the action.
+  2. **Account Settings**
+     - Inline edit activated by a pencil icon.
+     - Change username and/or password.
+     - Client-side validation for matching passwords and a notification on save/cancel.
+
+### 6. Alerts & Notifications
+
+- Reusable Bulma notifications for:
+  - Fixed top-right alerts on settings actions.
+  - Error alerts on login failure.
+  - Info banner on the login screen.
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js & npm
+- Angular CLI
+- Bulma CSS & FontAwesome
+
+### Install & Run
 
 ```bash
+git clone https://github.com/BailurVikramBhat/padarchanam-anumodanam.git
+cd <your-project-folder>
+npm install
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Demo Usage
 
-## Code scaffolding
+- Navigate to `http://localhost:4200`
+- Login with **test/test**
+- Explore the navbar, mode selection, and settings page interactions.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+---
 
-```bash
-ng generate component component-name
-```
+## Next Steps
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Hook up real backend endpoints for authentication and data persistence.
+- Implement the actual **Today** dashboard and **Analytics** charts as per the backend response.
+- Add SMS/email confirmation for password change.
+- Finalize the visit booking workflow with Spring Boot backend.
