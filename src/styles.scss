@@ -1,20 +1,20 @@
-@import "bulma/bulma";
+// @import "bulma/bulma";
 body {
-	font-family: "Lexend", sans-serif;
+  font-family: "Lexend", sans-serif;
 }
 button,
 .btn,
 .action-btn,
 [role="button"] {
-	-webkit-user-select: none; /* Safari */
-	-moz-user-select: none; /* Firefox */
-	-ms-user-select: none; /* IE10+/Edge */
-	user-select: none; /* Standard */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
 
-	/* Optional: Add this to prevent long-tap highlighting on mobile */
-	-webkit-tap-highlight-color: transparent;
-	tap-highlight-color: transparent;
+  /* Optional: Add this to prevent long-tap highlighting on mobile */
+  -webkit-tap-highlight-color: transparent;
+  tap-highlight-color: transparent;
 }
 .font-family-devanagari {
-	font-family: "Poppins";
+  font-family: "Poppins";
 }

@@ -1,4 +1,27 @@
-<div class="section has-background-info-light">
-	<app-add-visit-form (addVisit)="addSeva($event)"></app-add-visit-form>
-	<app-visit-list [visitList]="visitsRepo()"></app-visit-list>
+<div class="section">
+  <app-add-visit-form
+    [visitList]="filtered()"
+    (addVisit)="addSeva($event)"
+  ></app-add-visit-form>
+  <div class="columns">
+    <app-date-selector
+      class="column"
+      [today]="today()"
+      (dateChange)="onDateChange($event)"
+    />
+    <app-search-bar
+      class="column"
+      [searchTerm]="search()"
+      (search)="onSearchChange($event)"
+    />
+  </div>
+  @if (loading()) {
+  <div class="shimmer-container">
+    @for (_ of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; track $index) {
+    <div class="shimmer-card"></div>
+    }
+  </div>
+  } @if (!loading()) {
+  <app-visit-list [visitList]="filtered()"></app-visit-list>
+  }
 </div>

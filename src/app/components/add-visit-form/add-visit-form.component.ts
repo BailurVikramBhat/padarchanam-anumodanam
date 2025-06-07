@@ -5,45 +5,63 @@ import {
   EventEmitter,
   signal,
   WritableSignal,
-} from "@angular/core";
-import { CommonModule } from "@angular/common";
+  Input,
+} from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
   FormGroup,
   Validators,
   ReactiveFormsModule,
-} from "@angular/forms";
-import { IVisit, EVisitStatus } from "../../services/visit.service";
+} from '@angular/forms';
+import { IVisit, EVisitStatus } from '../../services/visit.service';
+import { TooltipComponent } from '../tooltip/tooltip.component';
+type CountOpts = {
+  status?: EVisitStatus;
+  local?: boolean;
+};
 @Component({
-  selector: "app-add-visit-form",
-  imports: [ReactiveFormsModule, CommonModule],
-  templateUrl: "./add-visit-form.component.html",
-  styleUrl: "./add-visit-form.component.scss",
+  selector: 'app-add-visit-form',
+  imports: [ReactiveFormsModule, CommonModule, TooltipComponent],
+  templateUrl: './add-visit-form.component.html',
+  styleUrl: './add-visit-form.component.scss',
 })
 export class AddVisitFormComponent implements OnInit {
+  @Input({
+    required: true,
+  })
+  visitList!: IVisit[];
+  readonly VisitStatus = EVisitStatus;
+  get tooltipMessage() {
+    return 'For non-Indian numbers, please contact admin';
+  }
+  completedOpts: CountOpts = { status: EVisitStatus.SUCCESS };
+  completedLocalOpts: CountOpts = { status: EVisitStatus.SUCCESS, local: true };
+  pendingGlobalOpts: CountOpts = { status: EVisitStatus.PENDING, local: false };
+
   visitForm!: FormGroup;
   @Output() addVisit = new EventEmitter<IVisit>();
-  selectedType: WritableSignal<string> = signal("local");
+  selectedType: WritableSignal<string> = signal('local');
 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.visitForm = this.fb.group({
-      name: ["", [Validators.required, Validators.minLength(3)]],
-      gotra: ["", [Validators.required, Validators.minLength(3)]],
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      gotra: ['', [Validators.required, Validators.minLength(3)]],
       visitDate: [this.todayString(), Validators.required],
       local: [true, Validators.required],
-      phone: ["", [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+      phone: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
     });
   }
 
   todayString(): string {
     const today = new Date();
-    return today.toISOString().split("T")[0];
+    return today.toISOString().split('T')[0];
   }
 
   selectType(selected: string) {
-    console.log("select type is coming as: " + selected);
+    console.log('select type is coming as: ' + selected);
     this.selectedType.set(selected);
   }
 
@@ -58,7 +76,7 @@ export class AddVisitFormComponent implements OnInit {
       name: formValue.name,
       gotra: formValue.gotra,
       visitDate: formValue.visitDate,
-      local: this.selectedType() === "local",
+      local: this.selectedType() === 'local',
       phone: formValue.phone,
       status: EVisitStatus.PENDING,
       createdDate: new Date().toISOString(),
@@ -66,11 +84,24 @@ export class AddVisitFormComponent implements OnInit {
     console.log(newVisit);
     this.addVisit.emit(newVisit);
     this.visitForm.reset({
-      name: "",
-      gotra: "",
+      name: '',
+      gotra: '',
       visitDate: this.todayString(),
       local: true,
-      phone: "",
+      phone: '',
     });
+  }
+
+  getCount(opts: CountOpts = {}): number {
+    const { status, local } = opts;
+    return this.visitList.reduce((acc, v) => {
+      if (
+        (status === undefined || v.status === status) &&
+        (local === undefined || v.local === local)
+      ) {
+        return acc + 1;
+      }
+      return acc;
+    }, 0);
   }
 }

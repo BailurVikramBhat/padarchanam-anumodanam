@@ -1,0 +1,60 @@
+<div class="box">
+  <h1 class="title is-4">Settings</h1>
+
+  <ul>
+    <li
+      class="py-4 is-flex is-justify-content-space-between is-align-items-flex-start"
+    >
+      <div>
+        <strong>1. Update Data Preferences</strong><br />
+        <span class="has-text-grey">
+          When switched to <strong>Mock DB</strong>, all operations use a local
+          sample dataset. Select <strong>Actual DB</strong> to interact with
+          live data.
+        </span>
+      </div>
+      <button
+        class="button is-small is-white"
+        (click)="showNotAvailableAlert('data')"
+      >
+        <span class="icon is-small">
+          <i class="fas fa-pencil-alt"></i>
+        </span>
+      </button>
+    </li>
+
+    <li
+      class="py-4 is-flex is-justify-content-space-between is-align-items-flex-start"
+    >
+      <div>
+        <strong>2. Account Settings</strong><br />
+        <span class="has-text-grey">
+          Change your account <strong>username</strong> or
+          <strong>password</strong> here. Passwords must be at least 8
+          characters and include both letters and numbers.
+        </span>
+      </div>
+      <button
+        class="button is-small is-white"
+        (click)="showNotAvailableAlert('account')"
+      >
+        <span class="icon is-small">
+          <i class="fas fa-pencil-alt"></i>
+        </span>
+      </button>
+    </li>
+  </ul>
+</div>
+
+@if (showAlert) {
+<div class="notification is-warning top-right-alert">
+  <div class="has-text-weight-bold is-capitalized is-size-4">
+    {{ alertHeader }}
+  </div>
+  <div class="has-text-weight-light is-size-6">
+    when available, it can update:
+  </div>
+  <button class="delete" (click)="showAlert = false"></button>
+  {{ alertMessage }}
+</div>
+}

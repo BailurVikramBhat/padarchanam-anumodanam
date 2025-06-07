@@ -1,0 +1,104 @@
+<!-- src/app/login/login.component.html -->
+<div class="login-container">
+  <div class="login-card">
+    <div class="has-text-centered mb-5">
+      <span class="icon is-large has-text-primary">
+        <i class="fas fa-user-circle fa-3x"></i>
+      </span>
+      <h1 class="title mt-3 has-text-grey-darker">Welcome Back</h1>
+      <p class="subtitle is-6 has-text-grey">Sign in to your account</p>
+    </div>
+    <div class="notification is-info">
+      🚧 <strong>Demo mode:</strong> Use <code>client1</code> /
+      <code>simple123</code> to log in. All data is mock until backend is
+      connected.
+    </div>
+    @if (isIncorrectCreds()) {
+    <div class="notification is-danger">
+      <button class="delete" (click)="isIncorrectCreds.set(false)"></button>
+      {{ errorMessage }}
+    </div>
+    }
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="field">
+        <label class="label has-text-weight-normal has-text-grey-darker"
+          >Username</label
+        >
+        <div class="control has-icons-left">
+          <input
+            class="input is-medium has-background-white has-text-grey"
+            formControlName="username"
+            [ngClass]="{
+              'is-danger':
+                form.get('username')?.invalid && form.get('username')?.touched
+            }"
+          />
+          <span class="icon is-left">
+            <i class="fas fa-user"></i>
+          </span>
+        </div>
+        <p
+          class="help is-danger"
+          *ngIf="form.get('username')?.errors?.['required'] && form.get('username')?.touched"
+        >
+          <span class="icon is-small">
+            <i class="fas fa-exclamation-circle"></i>
+          </span>
+          Username is required
+        </p>
+      </div>
+
+      <div class="field">
+        <label class="label has-text-weight-normal has-text-grey-darker"
+          >Password</label
+        >
+        <div class="control has-icons-left">
+          <input
+            class="input is-medium has-background-white has-text-grey"
+            type="password"
+            formControlName="password"
+            [ngClass]="{
+              'is-danger':
+                form.get('password')?.invalid && form.get('password')?.touched
+            }"
+          />
+          <span class="icon is-left">
+            <i class="fas fa-lock"></i>
+          </span>
+        </div>
+        <p
+          class="help is-danger"
+          *ngIf="form.get('password')?.errors?.['required'] && form.get('password')?.touched"
+        >
+          <span class="icon is-small">
+            <i class="fas fa-exclamation-circle"></i>
+          </span>
+          Password is required
+        </p>
+      </div>
+
+      <div class="field mt-5">
+        <div class="control">
+          <button
+            class="button is-primary is-medium is-fullwidth"
+            type="submit"
+            [disabled]="form.invalid"
+            [class.is-loading]="loading"
+          >
+            <span class="icon">
+              <i class="fas fa-sign-in-alt"></i>
+            </span>
+            <span>{{ loading ? "Signing in" : "Sign in" }}</span>
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <div class="has-text-centered mt-5">
+      <a class="is-size-7 has-text-grey-darker">
+        Forgot password? <app-tooltip [message]="tooltipMessage" />
+      </a>
+    </div>
+  </div>
+</div>

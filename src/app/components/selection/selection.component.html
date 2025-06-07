@@ -1,0 +1,60 @@
+<section class="section">
+  <div class="container">
+    <div class="has-text-centered mb-6">
+      <h2 class="title is-3 has-text-weight-semibold">Select Data Mode</h2>
+      <p class="subtitle is-5 has-text-grey">
+        Choose how you want to interact with the system
+      </p>
+    </div>
+
+    <div class="columns is-variable is-6 is-vcentered">
+      <!-- Mock Data Card -->
+      <div class="column is-half">
+        <div
+          class="card selection-card has-text-centered is-clickable"
+          (click)="chooseMode(true)"
+        >
+          <div class="card-content">
+            <div class="icon is-large has-text-info mb-4">
+              <i class="fas fa-database fa-3x"></i>
+            </div>
+            <h3 class="title is-4 has-text-weight-medium mb-3">Mock Data</h3>
+            <p class="subtitle is-6 has-text-grey">Explore with sample data</p>
+            <div class="mt-4">
+              <span class="icon has-text-primary">
+                <i class="fas fa-arrow-right fa-lg"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real Backend Card -->
+      <div class="column is-half">
+        <div
+          class="card selection-card has-text-centered is-clickable"
+          (click)="chooseMode(false)"
+        >
+          <div class="card-content">
+            <div class="icon is-large has-text-success mb-4">
+              <i class="fas fa-server fa-3x"></i>
+            </div>
+            <h3 class="title is-4 has-text-weight-medium mb-3">Live System</h3>
+            <p class="subtitle is-6 has-text-grey">
+              Connect to production data
+            </p>
+            <div class="mt-4">
+              <span class="icon has-text-primary">
+                <i class="fas fa-arrow-right fa-lg"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="has-text-centered mt-6">
+      <p class="help">You can change this later in account settings</p>
+    </div>
+  </div>
+</section>

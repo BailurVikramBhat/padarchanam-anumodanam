@@ -1,183 +1,98 @@
-import { Component, OnInit, signal, WritableSignal } from "@angular/core";
-import { VisitListComponent } from "../../components/visit-list/visit-list.component";
-import { DateSelectorComponent } from "../../components/date-selector/date-selector.component";
-import { AddVisitFormComponent } from "../../components/add-visit-form/add-visit-form.component";
-import { SearchBarComponent } from "../../components/search-bar/search-bar.component";
-import { IVisit, EVisitStatus } from "../../services/visit.service";
-const visits: IVisit[] = [
-  {
-    id: 1,
-    name: "Satyadharma Kulkarni",
-    gotra: "Bhardwaj",
-    phone: "9876543210",
-    local: true,
-    status: EVisitStatus.PENDING,
-    visitDate: "2023-06-15",
-    createdDate: "2023-06-01",
-  },
-  {
-    id: 2,
-    name: "Prahlada Rao",
-    gotra: "Kashyap",
-    phone: "8765432109",
-    local: false,
-    status: EVisitStatus.SUCCESS,
-    visitDate: "2023-06-15",
-    createdDate: "2023-06-02",
-    completeDate: "2023-06-15",
-  },
-  {
-    id: 3,
-    name: "Narasimha Katigeri",
-    gotra: "Vats",
-    phone: "7654321098",
-    local: true,
-    status: EVisitStatus.FAILURE,
-    visitDate: "2023-06-16",
-    createdDate: "2023-06-03",
-  },
-  {
-    id: 4,
-    name: "Ananta Achar Kurnool",
-    gotra: "Gautam",
-    phone: "6543210987",
-    local: false,
-    status: EVisitStatus.SUCCESS,
-    visitDate: "2023-06-16",
-    createdDate: "2023-06-04",
-    completeDate: "2023-06-15",
-  },
-  {
-    id: 5,
-    name: "Pavan Bhat",
-    gotra: "Bhardwaj",
-    phone: "5432109876",
-    local: true,
-    status: EVisitStatus.PENDING,
-    visitDate: "2023-06-17",
-    createdDate: "2023-06-05",
-  },
-  {
-    id: 6,
-    name: "Purushottama Rao Chintal",
-    gotra: "Koundinya",
-    phone: "4321098765",
-    local: false,
-    status: EVisitStatus.SUCCESS,
-    visitDate: "2023-06-17",
-    createdDate: "2023-06-06",
-    completeDate: "2023-06-15",
-  },
-  {
-    id: 7,
-    name: "Keshava Rao Tadipatri",
-    gotra: "Vasishtha",
-    phone: "3210987654",
-    local: true,
-    status: EVisitStatus.FAILURE,
-    visitDate: "2023-06-18",
-    createdDate: "2023-06-07",
-  },
-  {
-    id: 8,
-    name: "Padmanabha Vaidya",
-    gotra: "Parashar",
-    phone: "2109876543",
-    local: false,
-    status: EVisitStatus.PENDING,
-    visitDate: "2023-06-18",
-    createdDate: "2023-06-08",
-  },
-  {
-    id: 9,
-    name: "Vikram Bhat",
-    gotra: "Atri",
-    phone: "1098765432",
-    local: true,
-    status: EVisitStatus.SUCCESS,
-    visitDate: "2023-06-19",
-    createdDate: "2023-06-09",
-    completeDate: "2023-06-15",
-  },
-  {
-    id: 10,
-    name: "Mahalakshmi",
-    gotra: "Bharadwaj",
-    phone: "0987654321",
-    local: false,
-    status: EVisitStatus.FAILURE,
-    visitDate: "2023-06-19",
-    createdDate: "2023-06-10",
-  },
-  {
-    id: 11,
-    name: "Shrinivasa Mutalik",
-    gotra: "Jamadagni",
-    phone: "9876543211",
-    local: true,
-    status: EVisitStatus.PENDING,
-    visitDate: "2023-06-20",
-    createdDate: "2023-06-11",
-  },
-  {
-    id: 12,
-    name: "Sanjeeva Kuthloor",
-    gotra: "Vishwamitra",
-    phone: "8876543210",
-    local: false,
-    status: EVisitStatus.SUCCESS,
-    visitDate: "2023-06-20",
-    createdDate: "2023-06-12",
-    completeDate: "2023-06-15",
-  },
-  {
-    id: 13,
-    name: "Ramana H",
-    gotra: "Agastya",
-    phone: "7876543210",
-    local: true,
-    status: EVisitStatus.FAILURE,
-    visitDate: "2023-06-21",
-    createdDate: "2023-06-13",
-  },
-  {
-    id: 14,
-    name: "DH Achar Bengaluru",
-    gotra: "Sandilya",
-    phone: "6876543210",
-    local: false,
-    status: EVisitStatus.PENDING,
-    visitDate: "2023-06-21",
-    createdDate: "2023-06-14",
-  },
-  {
-    id: 15,
-    name: "Sarvagna Udupi",
-    gotra: "Garg",
-    phone: "5876543210",
-    local: true,
-    status: EVisitStatus.SUCCESS,
-    visitDate: "2023-06-22",
-    createdDate: "2023-06-15",
-    completeDate: "2023-06-15",
-  },
-];
-
+import {
+  Component,
+  OnInit,
+  signal,
+  WritableSignal,
+  input,
+  Input,
+  Signal,
+  computed,
+} from '@angular/core';
+import { VisitListComponent } from '../../components/visit-list/visit-list.component';
+import { DateSelectorComponent } from '../../components/date-selector/date-selector.component';
+import { AddVisitFormComponent } from '../../components/add-visit-form/add-visit-form.component';
+import { SearchBarComponent } from '../../components/search-bar/search-bar.component';
+import { IVisit, EVisitStatus } from '../../services/visit.service';
+import { visits } from '../../components/visit-list/visit-list.component';
+import { DatamodeService } from '../../services/datamode.service';
+import { delay } from 'rxjs';
 @Component({
-  selector: "app-dashboard",
+  selector: 'app-dashboard',
   imports: [
     VisitListComponent,
     DateSelectorComponent,
     AddVisitFormComponent,
     SearchBarComponent,
   ],
-  templateUrl: "./dashboard.component.html",
-  styleUrl: "./dashboard.component.scss",
+  templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.scss',
 })
-export class DashboardComponent {
-  visitsRepo: WritableSignal<IVisit[]> = signal(visits);
+export class DashboardComponent implements OnInit {
+  private _visits: WritableSignal<IVisit[]> = signal([]);
+  public visits = this._visits.asReadonly();
+
+  today: WritableSignal<string> = signal(this.getIsoToday());
+
+  search: WritableSignal<string> = signal('');
+  public loading: WritableSignal<boolean> = signal(false);
+
+  constructor(private dataMode: DatamodeService) {}
+  ngOnInit(): void {
+    this.loadDate(this.today());
+  }
+
+  private loadDate(date: string) {
+    this.loading.set(true);
+    this.dataMode
+      .getVisitsForDate(date)
+      .pipe(delay(5000))
+      .subscribe({
+        next: (data) => {
+          this._visits.set(data);
+          this.loading.set(false);
+        },
+        error: () => {
+          this._visits.set([]);
+          this.loading.set(false);
+        },
+      });
+  }
+
+  filtered: Signal<IVisit[]> = computed(() => {
+    const date = this.today();
+    const term = this.search().trim().toLowerCase();
+    let list = this._visits().filter((v) => v.visitDate === date);
+    if (term) {
+      list = list.filter(
+        (v) =>
+          v.name.toLowerCase().includes(term) ||
+          v.gotra.toLowerCase().includes(term) ||
+          v.phone.includes(term)
+      );
+    }
+    return list;
+  });
+
+  onDateChange(newDate: string) {
+    this.search.set('');
+    const d = newDate || this.getIsoToday();
+    this.today.set(d);
+    this.loadDate(d);
+  }
+
+  onSearchChange(query: string) {
+    this.search.set(query);
+  }
 
   addSeva(visit: IVisit) {
-    this.visitsRepo().unshift(visit);
+    this._visits.update((current) => [visit, ...current]);
+  }
+
+  private getIsoToday(): string {
+    const t = new Date();
+    const yyyy = t.getFullYear();
+    const mm = String(t.getMonth() + 1).padStart(2, '0');
+    const dd = String(t.getDate()).padStart(2, '0');
+    return `${yyyy}-${mm}-${dd}`;
   }
 }

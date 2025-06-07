@@ -1,0 +1,30 @@
+/* Active route styling */
+.active-route {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-bottom: 2px solid #ffdd57; /* Bulma's warning color */
+
+  .icon {
+    color: #ffdd57 !important;
+  }
+
+  span:not(.icon) {
+    color: white !important;
+    font-weight: 500;
+  }
+}
+
+/* For buttons with active state */
+.buttons .active-route {
+  background-color: #ffdd57 !important;
+  border-color: transparent !important;
+  color: rgba(0, 0, 0, 0.7) !important;
+
+  .icon {
+    color: rgba(0, 0, 0, 0.7) !important;
+  }
+}
+
+/* Fix for Bulma's default active color being too subtle */
+.navbar-item.is-active:not(:hover) {
+  background-color: transparent;
+}

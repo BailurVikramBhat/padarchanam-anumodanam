@@ -1,0 +1,8 @@
+.footer.is-fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 30; /* Below navbar */
+  padding: 1rem 1.5rem;
+}

@@ -1,1 +1,18 @@
-<p>search bar</p>
+<div class="field">
+  <div class="label">
+    Search
+    <app-tooltip [message]="tooltipMessage" />
+  </div>
+  <div class="control has-icons-left">
+    <input
+      class="input is-mobile"
+      type="text"
+      placeholder="Search by name, gotra, or phone"
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="onSearchChange()"
+    />
+    <span class="icon is-left">
+      <i class="fas fa-search"></i>
+    </span>
+  </div>
+</div>

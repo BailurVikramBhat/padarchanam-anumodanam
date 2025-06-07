@@ -1,1 +1,18 @@
-<p>date-selector works!</p>
+<div class="field">
+  <label class="label">Select Date</label>
+  <div class="field has-addons">
+    <div class="control is-expanded has-icons-right">
+      <input
+        class="input"
+        type="date"
+        [(ngModel)]="selectedDate"
+        (change)="onDateChange($event)"
+      />
+    </div>
+    <div class="control">
+      <button type="button" class="button is-light" (click)="clearDate()">
+        Clear
+      </button>
+    </div>
+  </div>
+</div>

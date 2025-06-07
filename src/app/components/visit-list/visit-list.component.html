@@ -1,9 +1,20 @@
 <div class="section">
-	<h2 class="title is-4">Today's Visits</h2>
-
-	<div class="columns is-multiline is-variable is-4">
-		<div class="column is-one-third" *ngFor="let visit of visitList">
-			<app-visit-card [visit]="visit"></app-visit-card>
-		</div>
-	</div>
+  <h2 class="title is-4">Sevas:</h2>
+  @if (visitList.length===0) {
+  <div class="notification is-danger">
+    <!-- <button class="delete"></button> -->
+    No sevas found for today! Please remove the filter or change the date and
+    try again
+  </div>
+  } @else {
+  <div class="notification is-info">
+    <!-- <button class="delete"></button> -->
+    {{ visitList.length }} sevas are scheduled for today
+  </div>
+  }
+  <div class="columns is-multiline is-variable is-4">
+    <div class="column is-one-third" *ngFor="let visit of visitList">
+      <app-visit-card [visit]="visit"></app-visit-card>
+    </div>
+  </div>
 </div>

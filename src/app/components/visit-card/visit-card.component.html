@@ -1,86 +1,130 @@
 <div class="card-container">
-	<!-- STATUS PILL -->
-	<span
-		class="tag is-medium status-pill is-rounded has-text-white"
-		[ngClass]="{
-			'is-warning': visit.status === 'PENDING',
-			'is-success': visit.status === 'SUCCESS',
-			'is-danger': visit.status === 'FAILURE',
-		}"
-	>
-		{{ visit.status }}
-	</span>
+  <!-- Status Pill -->
+  <span
+    class="tag is-medium status-pill is-rounded has-text-white has-text-weight-bold"
+    [ngClass]="{
+      'is-warning pulse-animation': visit.status === 'PENDING',
+      'is-success': visit.status === 'SUCCESS',
+      'is-danger': visit.status === 'FAILURE'
+    }"
+  >
+    <span class="icon is-small">
+      <i
+        [ngClass]="{
+          'fa-solid fa-clock': visit.status === 'PENDING',
+          'fa-solid fa-check-circle': visit.status === 'SUCCESS',
+          'fa-solid fa-exclamation-circle': visit.status === 'FAILURE'
+        }"
+      ></i>
+    </span>
+    <span>{{ visit.status }}</span>
+  </span>
 
-	<!-- CARD (add dynamic border class here) -->
-	<div
-		class="card"
-		[ngClass]="{
-			'border-warning': visit.status === 'PENDING',
-			'border-success': visit.status === 'SUCCESS',
-			'border-danger': visit.status === 'FAILURE',
-		}"
-	>
-		<div class="card-content">
-			<div class="media">
-				<div class="media-content">
-					<p class="title is-5">{{ visit.name }}</p>
-					<p class="subtitle is-7">{{ visit.gotra }}</p>
-				</div>
-				<div class="media-right">
-					<div class="tags has-addons">
-						<i
-							class="tag"
-							[ngClass]="
-								visit.local
-									? 'fa-solid fa-location-dot'
-									: 'fa-solid fa-earth-americas'
-							"
-						></i>
-						<span class="tag is-small">
-							{{ visit.local ? "Local" : "Non-Local" }}
-						</span>
-					</div>
-				</div>
-			</div>
+  <!-- Card -->
+  <div
+    class="card has-shadow-lifted"
+    [ngClass]="{
+      'border-warning glow-warning': visit.status === 'PENDING',
+      'border-success': visit.status === 'SUCCESS',
+      'border-danger': visit.status === 'FAILURE'
+    }"
+  >
+    <div class="card-content">
+      <div class="media">
+        <div class="media-content">
+          <p class="title is-5 has-text-grey-dark">{{ visit.name }}</p>
+          <p class="subtitle is-7 has-text-primary">
+            <span class="icon is-small">
+              <i class="fas fa-user-tag"></i>
+            </span>
+            <span>{{ visit.gotra }}</span>
+          </p>
+        </div>
+        <div class="media-right">
+          <div class="tags has-addons">
+            <span class="tag is-dark">
+              <i
+                [ngClass]="
+                  visit.local
+                    ? 'fa-solid fa-location-dot'
+                    : 'fa-solid fa-earth-americas'
+                "
+              >
+              </i>
+            </span>
+            <span class="tag is-light">
+              {{ visit.local ? "Local" : "Non-Local" }}
+            </span>
+          </div>
+        </div>
+      </div>
 
-			<div class="content">
-				<p>
-					<strong>Phone: </strong>
-					<span class="is-family-monospace">{{ visit.phone }}</span>
-				</p>
-				<p>
-					<strong>Created:</strong>
-					{{ visit.createdDate | date: "short" }}
-				</p>
-				<p *ngIf="visit.completeDate">
-					<strong>Completed On: </strong>
-					{{ visit.completeDate | date: "short" }}
-				</p>
-			</div>
-		</div>
+      <div class="content">
+        <div class="field is-horizontal">
+          <div class="field-label is-small">
+            <label class="label">Phone:</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control is-expanded">
+                <span class="is-family-monospace">{{ visit.phone }}</span>
+              </p>
+            </div>
+          </div>
+        </div>
 
-		<footer class="card-footer">
-			<button
-				class="card-footer-item button is-small is-success"
-				(click)="markSuccess.emit(visit.id)"
-				*ngIf="visit.status !== 'SUCCESS'"
-			>
-				<span class="icon">
-					<i class="fas fa-check"></i>
-				</span>
-				<span>Mark Success</span>
-			</button>
+        <div class="field is-horizontal">
+          <div class="field-label is-small">
+            <label class="label">Created:</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control is-expanded">
+                {{ visit.createdDate | date : "medium" }}
+              </p>
+            </div>
+          </div>
+        </div>
 
-			<button
-				class="card-footer-item button is-small is-danger"
-				(click)="markFailure.emit(visit.id)"
-				*ngIf="visit.status !== 'FAILURE'"
-			>
-				<span class="icon">
-					<i class="fas fa-times"></i>
-				</span>
-				<span>Mark Failure</span>
-			</button>
-		</footer>
-	</div>
+        <div class="field is-horizontal" *ngIf="visit.completeDate">
+          <div class="field-label is-small">
+            <label class="label">Completed:</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control is-expanded">
+                {{ visit.completeDate | date : "medium" }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="card-footer p-2">
+      <div class="buttons" style="width: 100%">
+        <button
+          class="card-footer-item button is-small is-success is-outlined has-text-weight-semibold smooth-hover"
+          (click)="markSuccess.emit(visit.id)"
+          *ngIf="visit.status !== 'SUCCESS'"
+        >
+          <span class="icon">
+            <i class="fas fa-check"></i>
+          </span>
+          <span>Mark Success</span>
+        </button>
+
+        <button
+          class="card-footer-item button is-small is-danger is-outlined has-text-weight-semibold smooth-hover"
+          (click)="markFailure.emit(visit.id)"
+          *ngIf="visit.status !== 'FAILURE'"
+        >
+          <span class="icon">
+            <i class="fas fa-times"></i>
+          </span>
+          <span>Mark Failure</span>
+        </button>
+      </div>
+    </footer>
+  </div>
 </div>

@@ -1,41 +1,94 @@
+/* Button Hover Fixes */
+.card-footer-item.button {
+  border-radius: 0;
+  // transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  // transform: translateZ(0); /* Hardware acceleration */
+  backface-visibility: hidden;
+}
+
+.card-footer-item.button.smooth-hover:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-footer-item.button.is-success.is-outlined:hover {
+  background-color: #48c774;
+  color: white;
+  border-color: transparent;
+}
+
+.card-footer-item.button.is-danger.is-outlined:hover {
+  background-color: #f14668;
+  color: white;
+  border-color: transparent;
+}
+
+/* Rest of your existing CSS remains the same */
 .card-container {
   position: relative;
+  margin-bottom: 2rem;
 }
 
-/* Status pill (top-right) */
 .status-pill {
   position: absolute;
-  top: -0.75rem;
-  right: 0.75rem;
-  z-index: 10;
+  top: -12px;
+  left: 20px;
+  z-index: 2;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Base card styling (padding-top ensures pill doesn’t overlap content) */
 .card {
-  padding-top: 1.5rem;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.card-footer-item.button {
-  width: 100%;
-  justify-content: center;
+.card:hover {
+  transform: translateY(-3px);
 }
 
-.tag.is-medium {
-  font-size: 0.85rem;
-  padding: 0.5em 0.75em;
+.has-shadow-lifted {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Colored left border for each status */
 .border-warning {
-  border-left: 4px solid #ffdd57; /* Bulma’s “is-warning” color */
+  border-top: 4px solid #ffdd57;
 }
 
 .border-success {
-  border-left: 4px solid #23d160; /* Bulma’s “is-success” color */
+  border-top: 4px solid #48c774;
 }
 
 .border-danger {
-  border-left: 4px solid #ff3860; /* Bulma’s “is-danger” color */
+  border-top: 4px solid #f14668;
+}
+
+.glow-warning {
+  animation: glow-pulse 2s infinite alternate;
+}
+
+.card-footer {
+  border-top: none;
+  background-color: #f9f9f9;
+}
+
+@keyframes glow-pulse {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 221, 87, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(255, 221, 87, 0.8);
+  }
+}
+
+@keyframes pulse-animation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

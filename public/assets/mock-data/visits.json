@@ -1,0 +1,158 @@
+[
+  {
+    "id": 1,
+    "name": "Satyadharmaa Kulkarni",
+    "gotra": "Bhardwaj",
+    "phone": "9876543210",
+    "local": true,
+    "status": "PENDING",
+    "visitDate": "2025-06-07",
+    "createdDate": "2025-06-07"
+  },
+  {
+    "id": 2,
+    "name": "Prahlada Rao",
+    "gotra": "Kashyap",
+    "phone": "8765432109",
+    "local": false,
+    "status": "SUCCESS",
+    "visitDate": "2025-06-07",
+    "createdDate": "2025-06-07",
+    "completeDate": "2025-06-07"
+  },
+  {
+    "id": 3,
+    "name": "Narasimha Katigeri",
+    "gotra": "Vats",
+    "phone": "7654321098",
+    "local": true,
+    "status": "FAILURE",
+    "visitDate": "2025-06-07",
+    "createdDate": "2023-06-03"
+  },
+  {
+    "id": 4,
+    "name": "Ananta Achar Kurnool",
+    "gotra": "Gautam",
+    "phone": "6543210987",
+    "local": false,
+    "status": "SUCCESS",
+    "visitDate": "2025-06-07",
+    "createdDate": "2023-06-04",
+    "completeDate": "2023-06-15"
+  },
+  {
+    "id": 5,
+    "name": "Pavan Bhat",
+    "gotra": "Bhardwaj",
+    "phone": "5432109876",
+    "local": true,
+    "status": "PENDING",
+    "visitDate": "2025-06-08",
+    "createdDate": "2023-06-05"
+  },
+  {
+    "id": 6,
+    "name": "Purushottama Rao Chintal",
+    "gotra": "Koundinya",
+    "phone": "4321098765",
+    "local": false,
+    "status": "SUCCESS",
+    "visitDate": "2023-06-17",
+    "createdDate": "2023-06-06",
+    "completeDate": "2023-06-15"
+  },
+  {
+    "id": 7,
+    "name": "Keshava Rao Tadipatri",
+    "gotra": "Vasishtha",
+    "phone": "3210987654",
+    "local": true,
+    "status": "FAILURE",
+    "visitDate": "2023-06-18",
+    "createdDate": "2023-06-07"
+  },
+  {
+    "id": 8,
+    "name": "Padmanabha Vaidya",
+    "gotra": "Parashar",
+    "phone": "2109876543",
+    "local": false,
+    "status": "PENDING",
+    "visitDate": "2023-06-18",
+    "createdDate": "2023-06-08"
+  },
+  {
+    "id": 9,
+    "name": "Vikram Bhat",
+    "gotra": "Atri",
+    "phone": "1098765432",
+    "local": true,
+    "status": "SUCCESS",
+    "visitDate": "2023-06-19",
+    "createdDate": "2023-06-09",
+    "completeDate": "2023-06-15"
+  },
+  {
+    "id": 10,
+    "name": "Mahalakshmi",
+    "gotra": "Bharadwaj",
+    "phone": "0987654321",
+    "local": false,
+    "status": "FAILURE",
+    "visitDate": "2023-06-19",
+    "createdDate": "2023-06-10"
+  },
+  {
+    "id": 11,
+    "name": "Shrinivasa Mutalik",
+    "gotra": "Jamadagni",
+    "phone": "9876543211",
+    "local": true,
+    "status": "PENDING",
+    "visitDate": "2023-06-20",
+    "createdDate": "2023-06-11"
+  },
+  {
+    "id": 12,
+    "name": "Sanjeeva Kuthloor",
+    "gotra": "Vishwamitra",
+    "phone": "8876543210",
+    "local": false,
+    "status": "SUCCESS",
+    "visitDate": "2023-06-20",
+    "createdDate": "2023-06-12",
+    "completeDate": "2023-06-15"
+  },
+  {
+    "id": 13,
+    "name": "Ramana H",
+    "gotra": "Agastya",
+    "phone": "7876543210",
+    "local": true,
+    "status": "FAILURE",
+    "visitDate": "2023-06-21",
+    "createdDate": "2023-06-13"
+  },
+  {
+    "id": 14,
+    "name": "DH Achar Bengaluru",
+    "gotra": "Sandilya",
+    "phone": "6876543210",
+    "local": false,
+    "status": "PENDING",
+    "visitDate": "2023-06-21",
+    "createdDate": "2023-06-14"
+  },
+  {
+    "id": 15,
+    "name": "Sarvagna Udupi",
+    "gotra": "Garg",
+    "phone": "5876543210",
+    "local": true,
+    "status": "SUCCESS",
+    "visitDate": "2023-06-22",
+    "createdDate": "2023-06-15",
+    "completeDate": "2023-06-15"
+  }
+]

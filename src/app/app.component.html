@@ -1,15 +1,27 @@
-<p
-  class="is-small font-family-devanagari has-text-centered mt-1 has-text-success has-text-success-dark"
->
-  श्री जगद्गुरु माधवाचार्य मूल महासंस्थानम्
-</p>
-<p class="is-medium font-family-devanagari has-text-centered has-text-warning">
-  श्री उत्तरादी मठः
-</p>
-<section class="hero is-small is-link">
-  <div class="hero-body">
-    <p class="title font-family-devanagari mb-2">पादार्चनं अनुमोदनम्</p>
-    <p class="subtitle font-family-devanagari">सत्यात्मानं गुरुं भजे</p>
+<div class="page-container is-flex is-flex-direction-column">
+  @if (isAuthenticated) {
+  <app-navbar />
+  }
+  <section class="hero is-small is-link">
+    <div
+      class="hero-body is-flex is-flex-direction-row is-justify-content-space-between"
+    >
+      <div>
+        <p class="title font-family-devanagari mb-2">पादार्चनं अनुमोदनम्</p>
+        <p class="subtitle font-family-devanagari">सत्यात्मानं गुरुं भजे</p>
+      </div>
+      @if (isAuthenticated) {
+      <div class="is-size-4 is-align-content-center">{{ todaysDate }}</div>
+      }
+    </div>
+  </section>
+  @if (loading) {
+  <div class="has-text-centered py-4 is-flex-grow-1" style="height: 50vh">
+    <button class="button is-loading is-large">Loading...</button>
   </div>
-</section>
-<app-dashboard></app-dashboard>
+
+  } @if (!loading) {
+  <router-outlet></router-outlet>
+  }
+  <app-footer />
+</div>
