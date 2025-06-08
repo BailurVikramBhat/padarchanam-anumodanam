@@ -38,6 +38,7 @@ export class AuthService {
         )
       );
     }
+
     if (environment.useMockAuth) {
       return this.http.get<LoginResponse>('/assets/mock-data/login.json').pipe(
         tap((res) => {
