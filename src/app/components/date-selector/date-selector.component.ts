@@ -8,7 +8,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
+import { getIsoToday } from '../../pages/dashboard/dashboard.component';
 @Component({
   selector: 'app-date-selector',
   imports: [FormsModule],
@@ -22,6 +22,8 @@ export class DateSelectorComponent implements OnChanges {
   today!: string;
   private initialToday!: string;
   selectedDate: string = '';
+
+  public minDate: string = getIsoToday();
 
   @Output() dateChange = new EventEmitter<string>();
 

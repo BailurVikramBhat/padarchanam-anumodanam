@@ -15,7 +15,13 @@
       (search)="onSearchChange($event)"
     />
   </div>
-  @if (loading()) {
+  @if (this.showErrorNotif()) {
+  <app-alert-notification
+    [isAlertVisible]="showErrorNotif()"
+    alertHeader="Unable to add register the seva"
+    alertMessage="Please contact administrator."
+  />
+  } @if (loading()) {
   <div class="shimmer-container">
     @for (_ of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; track $index) {
     <div class="shimmer-card"></div>

@@ -1,31 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, signal, WritableSignal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
+import { AlertNotificationComponent } from '../../components/alert-notification/alert-notification.component';
 
 @Component({
   selector: 'app-settings',
-  imports: [],
+  imports: [AlertNotificationComponent],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.scss',
 })
 export class SettingsComponent {
-  showAlert = false;
-  alertMessage: string = '';
-  alertHeader: string = 'Feature not yet available!';
+  showAlert: WritableSignal<boolean> = signal(false);
   constructor(private auth: AuthService) {}
 
-  showNotAvailableAlert(feature: 'data' | 'account') {
-    if (feature === 'data') {
-      this.alertMessage =
-        'Data Preferences: Switching to Mock DB will use an in-memory dataset; Actual DB reads/writes real data.';
-    } else {
-      this.alertMessage =
-        'Account Settings: Change your username or password here. Choose a strong password (≥8 chars, mix of letters & numbers).';
-    }
+  triggerAlert() {
+    this.showAlert.set(true);
+  }
 
-    this.showAlert = true;
-
-    setTimeout(() => (this.showAlert = false), 5000);
+  setValue() {
+    this.showAlert.set(false);
   }
 }

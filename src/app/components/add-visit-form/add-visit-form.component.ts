@@ -16,6 +16,7 @@ import {
 } from '@angular/forms';
 import { IVisit, EVisitStatus } from '../../services/visit.service';
 import { TooltipComponent } from '../tooltip/tooltip.component';
+import { getIsoToday } from '../../pages/dashboard/dashboard.component';
 type CountOpts = {
   status?: EVisitStatus;
   local?: boolean;
@@ -42,6 +43,7 @@ export class AddVisitFormComponent implements OnInit {
   visitForm!: FormGroup;
   @Output() addVisit = new EventEmitter<IVisit>();
   selectedType: WritableSignal<string> = signal('local');
+  public minDate: string = getIsoToday();
 
   constructor(private fb: FormBuilder) {}
 

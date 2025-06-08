@@ -16,6 +16,14 @@ import { IVisit, EVisitStatus } from '../../services/visit.service';
 import { visits } from '../../components/visit-list/visit-list.component';
 import { DatamodeService } from '../../services/datamode.service';
 import { delay } from 'rxjs';
+import { AlertNotificationComponent } from '../../components/alert-notification/alert-notification.component';
+export function getIsoToday(): string {
+  const t = new Date();
+  const yyyy = t.getFullYear();
+  const mm = String(t.getMonth() + 1).padStart(2, '0');
+  const dd = String(t.getDate()).padStart(2, '0');
+  return `${yyyy}-${mm}-${dd}`;
+}
 @Component({
   selector: 'app-dashboard',
   imports: [
@@ -23,6 +31,7 @@ import { delay } from 'rxjs';
     DateSelectorComponent,
     AddVisitFormComponent,
     SearchBarComponent,
+    AlertNotificationComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
@@ -30,8 +39,9 @@ import { delay } from 'rxjs';
 export class DashboardComponent implements OnInit {
   private _visits: WritableSignal<IVisit[]> = signal([]);
   public visits = this._visits.asReadonly();
+  showErrorNotif: WritableSignal<boolean> = signal(false);
 
-  today: WritableSignal<string> = signal(this.getIsoToday());
+  today: WritableSignal<string> = signal(getIsoToday());
 
   search: WritableSignal<string> = signal('');
   public loading: WritableSignal<boolean> = signal(false);
@@ -75,7 +85,7 @@ export class DashboardComponent implements OnInit {
 
   onDateChange(newDate: string) {
     this.search.set('');
-    const d = newDate || this.getIsoToday();
+    const d = newDate || getIsoToday();
     this.today.set(d);
     this.loadDate(d);
   }
@@ -85,14 +95,9 @@ export class DashboardComponent implements OnInit {
   }
 
   addSeva(visit: IVisit) {
-    this._visits.update((current) => [visit, ...current]);
-  }
-
-  private getIsoToday(): string {
-    const t = new Date();
-    const yyyy = t.getFullYear();
-    const mm = String(t.getMonth() + 1).padStart(2, '0');
-    const dd = String(t.getDate()).padStart(2, '0');
-    return `${yyyy}-${mm}-${dd}`;
+    this.dataMode.saveVisit(visit).subscribe({
+      next: () => this.loadDate(this.today()),
+      error: (err) => this.showErrorNotif.set(true),
+    });
   }
 }

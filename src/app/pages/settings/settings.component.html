@@ -13,10 +13,7 @@
           live data.
         </span>
       </div>
-      <button
-        class="button is-small is-white"
-        (click)="showNotAvailableAlert('data')"
-      >
+      <button class="button is-small is-white" (click)="triggerAlert()">
         <span class="icon is-small">
           <i class="fas fa-pencil-alt"></i>
         </span>
@@ -34,10 +31,7 @@
           characters and include both letters and numbers.
         </span>
       </div>
-      <button
-        class="button is-small is-white"
-        (click)="showNotAvailableAlert('account')"
-      >
+      <button class="button is-small is-white" (click)="triggerAlert()">
         <span class="icon is-small">
           <i class="fas fa-pencil-alt"></i>
         </span>
@@ -46,15 +40,10 @@
   </ul>
 </div>
 
-@if (showAlert) {
-<div class="notification is-warning top-right-alert">
-  <div class="has-text-weight-bold is-capitalized is-size-4">
-    {{ alertHeader }}
-  </div>
-  <div class="has-text-weight-light is-size-6">
-    when available, it can update:
-  </div>
-  <button class="delete" (click)="showAlert = false"></button>
-  {{ alertMessage }}
-</div>
+@if (showAlert()) {
+<app-alert-notification
+  [isAlertVisible]="showAlert()"
+  (alertClosed)="setValue()"
+  alertHeader="Feature not available yet!"
+/>
 }

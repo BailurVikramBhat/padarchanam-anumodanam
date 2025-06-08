@@ -1,0 +1,10 @@
+@if (isAlertVisible) {
+<div class="notification is-warning top-right-alert">
+  <div class="has-text-weight-bold is-capitalized is-size-4">
+    {{ alertHeader }}
+  </div>
+
+  <button class="delete" (click)="closeAlert()"></button>
+  {{ alertMessage }}
+</div>
+}

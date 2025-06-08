@@ -249,7 +249,12 @@
             <div class="field">
               <label class="label">Seva Date</label>
               <div class="control has-icons-left">
-                <input class="input" type="date" formControlName="visitDate" />
+                <input
+                  class="input"
+                  type="date"
+                  formControlName="visitDate"
+                  [attr.min]="minDate"
+                />
                 <span class="icon is-small is-left">
                   <i class="fas fa-calendar-day"></i>
                 </span>
